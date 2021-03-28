@@ -14,7 +14,7 @@ function getIp(req) {
 }
 
 app.get('/', (req, res) => {
-  res.send('Hello World from: ' + getIp(req));
+  res.send('Hello World from: ' + getIp(req)+'hello everyone ');
 })
 
 app.listen(port, () => {
