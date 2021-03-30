@@ -1,22 +1,9 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const http = require('http'); //http
+const app = require('./app'); //require app
+require('dotenv').config();
 
-function getIp(req) {
-  let ip = req.connection.remoteAddress;
-  ip = ip.replace('::ffff:', '');
+const port = process.env.PORT || 3000; //setting port to 3000
+ 
+const server = http.createServer(app); //creating the server
 
-  if (ip == '127.0.0.1') {
-    ip = req.headers['x-real-ip'];
-  }
-
-  return ip;
-}
-
-app.get('/', (req, res) => {
-  res.send('Hello World from: ' + getIp(req)+'hello everyone ');
-})
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-})
+server.listen(port , console.log(`server started on port ${port}`)); //listening to server
